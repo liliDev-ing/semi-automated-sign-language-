@@ -154,13 +154,13 @@ def  changeFPS (input_v, output_v):
 
 # call of the functions
 
-video_ref_path = "C:/sortie/reference/father/father.mp4"
-output_json_path = "C:/sortie/reference/father/ref.json"
+video_ref_path = "./reference/M/M.mp4"
+output_json_path = "./reference/M/ref.json"
 
 fingerCalculations.extract_finger_movements(video_ref_path, output_json_path)
 
-video_path_general = "C:/sortie/test/family/family3.mp4"
-output_folder = "C:/sortie/output/father"
+video_path_general = "./test/letters/letters_2.mp4"
+output_folder = "./output/M"
 occurrences = match_finger_movements(video_path_general, output_json_path, output_folder)
 
 
