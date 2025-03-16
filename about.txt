@@ -1,0 +1,82 @@
+About this Project
+
+This project is designed to analyze finger movements in a video, extract key features, and compare them with reference sequences to identify occurrences of specific hand gestures. The project consists of three main Python files:
+
+fingerCalculations.py - Extracts finger movement features from a video.
+
+SequenceComparaison.py - Compares extracted sequences using correlation metrics.
+
+Main.py - Manages the overall process, including feature extraction, comparison, and result generation.
+
+How to Use
+
+1. Extract Finger Movement Data
+
+Run the following function from fingerCalculations.py to extract finger movement features from a reference video and save them to a JSON file:
+
+fingerCalculations.extract_finger_movements(video_ref_path, output_json_path)
+
+video_ref_path: Path to the reference video containing the desired hand gesture.
+
+output_json_path: Path to save the extracted finger movement features.
+
+2. Match Finger Movements in a New Video
+
+Run the following function from Main.py to compare a general video against the reference sequence:
+
+match_finger_movements(video_path_general, json_path_reference, output_folder, threshold=0.75)
+
+video_path_general: Path to the video where occurrences should be detected.
+
+json_path_reference: Path to the JSON file containing reference finger movement features.
+
+output_folder: Folder where matched video clips will be saved.
+
+threshold: Similarity threshold for identifying matches (default is 0.75).
+
+3. Sequence Comparison
+
+The SequenceComparaison.py script provides the core comparison function:
+
+compare_sequences(reference_sequence, window_sequence)
+
+This function calculates similarity scores between reference and general sequences based on finger shape and distance features.
+
+4. Save Matched Video Clips
+
+If a match is found, occurrences will be saved as separate video clips:
+
+save_occurrence_video(video_path, start_frame, end_frame, output_path)
+
+start_frame and end_frame: Frames defining the occurrence.
+
+output_path: Path where the matched clip will be saved.
+
+Requirements
+
+Ensure you have the following dependencies installed:
+
+pip install numpy opencv-python mediapipe
+
+Example Usage
+
+video_ref_path = "reference.mp4"
+output_json_path = "ref.json"
+fingerCalculations.extract_finger_movements(video_ref_path, output_json_path)
+
+video_path_general = "test_video.mp4"
+output_folder = "output"
+occurrences = match_finger_movements(video_path_general, output_json_path, output_folder)
+
+This will detect and extract matching hand gestures in test_video.mp4 based on the reference video reference.mp4 and save results in the output folder.
+
+Notes
+
+Ensure videos have a clear view of the hands for accurate results.
+
+Adjust the threshold value if too many/too few matches are found.
+
+The comparison considers both shape and distance features of finger movements.
+
+For any issues, check debug prints in the scripts to fine-tune the process.
+
